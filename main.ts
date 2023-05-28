@@ -1,6 +1,8 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -300
 })
+let Mario_current_vx = 0
+let Mario_current_vy = 0
 let mySprite: Sprite = null
 scene.setBackgroundImage(img`
     99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -213,6 +215,7 @@ mySprite,
 [img`
     ................
     ................
+    ................
     ........eeeee...
     ......ee3353ee..
     .....e3225512e..
@@ -238,8 +241,7 @@ mySprite,
     .8668eeeee22e...
     .866666999ee8...
     ..86666999968...
-    ..86666699968...
-    ..8666666998....
+    ..86666669988...
     ..8866668898....
     ...f88888898....
     ...fefe88888....
@@ -254,7 +256,7 @@ mySprite,
     ......ee3353ee..
     .....e3332532e..
     ....e32225512ff.
-    ...e32.22fffffff
+    ...e32222fffffff
     ..e32ffffffffff.
     .e22ffffffffff..
     .e22f4411411f...
@@ -290,7 +292,7 @@ mySprite,
     ......ee3353ee..
     .....e3332532e..
     ....e32225512ff.
-    ...e32.22fffffff
+    ...e32222fffffff
     ..e32ffffffffff.
     .e22ffffffffff..
     .e22f4411411f...
@@ -328,7 +330,7 @@ mySprite,
     ......ee3353ee..
     .....e3332532e..
     ....e32225512ff.
-    ...e32.22fffffff
+    ...e32222fffffff
     ..e32ffffffffff.
     .e22ffffffffff..
     .e22f4411411f...
@@ -400,3 +402,18 @@ let MarioNinja = sprites.create(img`
     ......fffffffffff.......
     ........................
     `, SpriteKind.Player)
+forever(function () {
+    if (mySprite.vy == 0) {
+        mySprite.ax = 0
+        if (Mario_current_vy == 0) {
+            controller.moveSprite(mySprite, 100, 0)
+            Mario_current_vx = mySprite.vx
+        } else {
+            mySprite.setVelocity(0, 0)
+            Mario_current_vy = 0
+        }
+    } else {
+        Mario_current_vy = mySprite.vy
+        mySprite.vx = Mario_current_vx
+    }
+})
