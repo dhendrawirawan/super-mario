@@ -1,5 +1,5 @@
 {
-    "name": "Super Mario",
+    "name": "Super Mario 06-07-2023 Shareable",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -15,7 +15,8 @@
         "tilemap.g.jres",
         "tilemap.g.ts",
         "images.g.jres",
-        "images.g.ts"
+        "images.g.ts",
+        "main.py"
     ],
     "testFiles": [
         "test.ts"
